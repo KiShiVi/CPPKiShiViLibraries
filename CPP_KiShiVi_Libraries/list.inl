@@ -70,9 +70,20 @@ void list<T>::push_back(const T& value)
 		p_tail = p_head;
 		return;
 	}
-	list<T>::iterator it = begin();
-	while (it != last()) ++it;
-	it.p_ptr->p_next = new Node(value);
-	it.p_ptr->p_next->p_prev = it.p_ptr;
+	p_tail->p_next = new Node(value);
+	p_tail->p_next->p_prev = p_tail;
 	p_tail = p_tail->p_next;
+}
+
+
+template<class T>
+void list<T>::push_front(const T& value)
+{
+	if (p_head == nullptr) {
+		push_front(value);
+		return;
+	}
+	p_head->p_prev = new Node(value);
+	p_head->p_prev->p_next = p_head;
+	p_head = p_head->p_prev;
 }

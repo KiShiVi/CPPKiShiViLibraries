@@ -14,6 +14,7 @@ public:
 	iterator end();
 
 	void push_back(const T& value);
+	void push_front(const T& value);
 };
 
 #include "list.inl"
