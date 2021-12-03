@@ -5,6 +5,8 @@ class List<T>::Node {
 	T m_value;
 	Node* p_next;
 	Node* p_prev;
+
+	Node(const T &value) : m_value{ value }, p_next{ nullptr }, p_prev{ nullptr } {}
 };
 
 template <class T>
@@ -13,9 +15,12 @@ List<T>::List() {
 }
 
 template<class T>
-T List<T>::push_back(const T& value) const
+void List<T>::push_back(const T& value)
 {
-	return value;	// plug
+	if (p_head == nullptr) {
+		p_head = new Node(value);
+		return;
+	}
 }
 
 

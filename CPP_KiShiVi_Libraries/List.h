@@ -3,9 +3,9 @@
 template <class T>
 class List {
 private:
-	class Node;
+	private class Node;
 	Node* p_head;
 public:
 	List();
-	T push_back (const T &value) const;
+	void push_back (const T &value);
 };
