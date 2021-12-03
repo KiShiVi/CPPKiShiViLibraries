@@ -22,25 +22,43 @@ public:
 		p_ptr = p_ptr->p_next;
 		return *this;
 	}
+
+	iterator operator++ (T) {
+		iterator it(*this);
+		++(*this);
+		return it;
+	}
+
 	iterator& operator-- () {
 		p_ptr = p_ptr->p_prev;
 		return *this;
 	}
+
+	iterator& operator-- (T) {
+		iterator it(*this);
+		--(*this);
+		return it;
+	}
+
 	T& operator* () {
 		return p_ptr->m_value;
 	}
+
 	iterator& operator=(const iterator& it) {
 		p_ptr = it.p_ptr;
 		return *this;
 	}
+
 	friend bool operator==(const iterator& it1, const iterator& it2) {
 		if (it1.p_ptr == it2.p_ptr)
 			return true;
 		return false;
 	}
+
 	friend bool operator!=(const iterator& it1, const iterator& it2) {
 		return !(it1 == it2);
 	}
+
 	friend class list;
 };
 
