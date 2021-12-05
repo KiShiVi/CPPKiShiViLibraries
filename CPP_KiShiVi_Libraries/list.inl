@@ -77,7 +77,19 @@ typename list<T>::iterator list<T>::last() {
 
 template<class T>
 typename list<T>::iterator list<T>::end() {
-	return iterator(p_tail->p_next);
+	return nullptr;
+}
+
+
+template<class T>
+int list<T>::size() {
+	iterator it = begin();
+	int result = 0;
+	while (it != end()) {
+		++result;
+		++it;
+	}
+	return result;
 }
 
 template<class T>
@@ -104,4 +116,46 @@ void list<T>::push_front(const T& value)
 	p_head->p_prev = new Node(value);
 	p_head->p_prev->p_next = p_head;
 	p_head = p_head->p_prev;
+}
+
+
+template<class T>
+T list<T>::pop(const int index)
+{
+	if (index < 0 || index >= size())
+		throw std::out_of_range("index out of range");
+	if (p_head == nullptr)
+		throw std::out_of_range("index out of range");
+	if (size() == 1) {
+		T temp{ p_head->m_value };
+		delete p_head;
+		p_head = nullptr;
+		p_tail = nullptr;
+		return temp;
+	}
+	else if (index == 0) {
+		T temp{ p_head->m_value };
+		p_head = p_head->p_next;
+		delete p_head->p_prev;
+		p_head->p_prev = nullptr;
+		return temp;
+	}
+	else if (index == size() - 1) {
+		T temp{ p_tail->m_value };
+		p_tail = p_tail->p_prev;
+		delete p_tail->p_next;
+		p_tail->p_next = nullptr;
+		return temp;
+	}
+	else {
+		iterator it = begin();;
+		for (int i = 0; i < index - 1; ++i) ++it;
+		Node* deletingNode = it.p_ptr->p_next;
+		T temp{ deletingNode->m_value };
+		it.p_ptr->p_next = deletingNode->p_next;
+		deletingNode->p_next->p_prev = deletingNode->p_prev;
+		delete deletingNode;
+		return temp;
+	}
+
 }

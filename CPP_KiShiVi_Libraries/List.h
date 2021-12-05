@@ -13,8 +13,10 @@ public:
 	iterator last();
 	iterator end();
 
+	int size();
 	void push_back(const T& value);
 	void push_front(const T& value);
+	T pop(const int index);
 };
 
 #include "list.inl"
