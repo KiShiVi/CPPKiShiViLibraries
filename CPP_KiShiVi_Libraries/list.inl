@@ -64,6 +64,12 @@ public:
 
 
 template<class T>
+list<T>::~list() {
+	erase();
+}
+
+
+template<class T>
 typename list<T>::iterator list<T>::begin() {
 	return iterator(p_head);
 }
@@ -91,6 +97,14 @@ int list<T>::size() {
 	}
 	return result;
 }
+
+
+template<class T>
+void list<T>::erase() {
+	while (p_head != nullptr) pop(0);
+	return;
+}
+
 
 template<class T>
 void list<T>::push_back(const T& value)
