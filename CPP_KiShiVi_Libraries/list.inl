@@ -162,7 +162,7 @@ T list<T>::pop(const int index)
 		return temp;
 	}
 	else {
-		iterator it = begin();;
+		iterator it = begin();
 		for (int i = 0; i < index - 1; ++i) ++it;
 		Node* deletingNode = it.p_ptr->p_next;
 		T temp{ deletingNode->m_value };
@@ -172,4 +172,13 @@ T list<T>::pop(const int index)
 		return temp;
 	}
 
+}
+
+template <class T>
+T& list<T>::operator[] (int index) {
+	if (index < 0 || index >= size())
+		throw std::out_of_range("index out of range");
+	Node* it = p_head;
+	for (int i = 0; i < index; ++i) it = it->p_next;
+	return it->m_value;
 }

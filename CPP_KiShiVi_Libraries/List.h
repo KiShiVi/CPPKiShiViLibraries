@@ -19,6 +19,8 @@ public:
 	void push_back(const T& value);
 	void push_front(const T& value);
 	T pop(const int index);
+
+	T& operator[] (int index);
 };
 
 #include "list.inl"
