@@ -8,6 +8,7 @@ private:
 	Node* p_tail;
 public:
 	list(): p_head(nullptr), p_tail(nullptr) {};
+	list(list<T>& _list);
 	~list();
 	class iterator;
 	iterator begin() const;
@@ -21,6 +22,7 @@ public:
 	T pop(const int index);
 
 	T& operator[] (int index);
+	T operator[] (int index) const;
 };
 
 #include "list.inl"

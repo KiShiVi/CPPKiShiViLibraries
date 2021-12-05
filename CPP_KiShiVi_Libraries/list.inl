@@ -64,6 +64,18 @@ public:
 
 
 template<class T>
+list<T>::list(list<T>& _list) {
+	p_head = nullptr;
+	p_tail = nullptr;
+	Node* it = _list.p_head;
+	while (it != nullptr) {
+		push_back(it->m_value);
+		it = it->p_next;
+	}
+}
+
+
+template<class T>
 list<T>::~list() {
 	erase();
 }
@@ -181,4 +193,9 @@ T& list<T>::operator[] (int index) {
 	Node* it = p_head;
 	for (int i = 0; i < index; ++i) it = it->p_next;
 	return it->m_value;
+}
+
+template <class T>
+T list<T>::operator[] (int index) const{
+	return (*this)[index];
 }
