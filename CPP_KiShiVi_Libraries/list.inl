@@ -70,30 +70,30 @@ list<T>::~list() {
 
 
 template<class T>
-typename list<T>::iterator list<T>::begin() {
+typename list<T>::iterator list<T>::begin() const {
 	return iterator(p_head);
 }
 
 
 template<class T>
-typename list<T>::iterator list<T>::last() {
+typename list<T>::iterator list<T>::last() const {
 	return iterator(p_tail);
 }
 
 
 template<class T>
-typename list<T>::iterator list<T>::end() {
+typename list<T>::iterator list<T>::end() const {
 	return nullptr;
 }
 
 
 template<class T>
-int list<T>::size() {
-	iterator it = begin();
+int list<T>::size() const{
+	Node* it = p_head;
 	int result = 0;
-	while (it != end()) {
+	while (it != nullptr) {
+		it = it->p_next;
 		++result;
-		++it;
 	}
 	return result;
 }

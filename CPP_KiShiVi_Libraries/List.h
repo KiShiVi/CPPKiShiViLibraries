@@ -10,11 +10,11 @@ public:
 	list(): p_head(nullptr), p_tail(nullptr) {};
 	~list();
 	class iterator;
-	iterator begin();
-	iterator last();
-	iterator end();
+	iterator begin() const;
+	iterator last() const;
+	iterator end() const;
 
-	int size();
+	int size() const;
 	void erase();
 	void push_back(const T& value);
 	void push_front(const T& value);
